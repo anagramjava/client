@@ -76,6 +76,7 @@ public class Application implements CommandLineRunner {
                         break;
                     case "P":
                         String[] words = getAnagrams(getWord(in));
+                        System.out.println("");
                         Arrays.stream(words).forEach(System.out::println);
                         break;
                     case "E":
@@ -87,6 +88,7 @@ public class Application implements CommandLineRunner {
                 }
             }
         } catch (Exception exception) {
+            exception.printStackTrace();
             System.out.println("Error while performing action");
             System.out.println("Please enter any key");
             in.readLine();
@@ -145,7 +147,7 @@ public class Application implements CommandLineRunner {
 
     private String[] getAnagrams(String word) {
         String url
-                = "http://localhost:8080/anagdddrams/" + word;
+                = "http://localhost:8080/anagrams/" + word;
         ResponseEntity<String[]> response
                 = restTemplate.getForEntity(url, String[].class);
         return response.getBody();
